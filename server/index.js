@@ -2,9 +2,12 @@ const express = require("express")
 const { Article } = require('./api');
 const { articleDelete } = require("./api/article");
 const app = express();
+const cors = require('cors')
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cors())
+
 app.get('/',(req,res) =>{
     res.send("success")
 })
