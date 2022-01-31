@@ -6,7 +6,7 @@ const db = mongoose.connection
 const model = (()=>{
     db.on("error", console.error)
     db.on("open",()=>{
-        console.log('Connection mongodb!')
+        console.log('Connecting mongodb!')
     })
 
     //Atlas mongodb cluster와 연결

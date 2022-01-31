@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const AutoIncrement = require('mongoose-sequence')(mongoose)
+
 const Article = new mongoose.Schema({
     titie:{type:String, required:true, unique:true},
     content:{type:String, required:true},
@@ -13,5 +15,7 @@ const Article = new mongoose.Schema({
     articleImgAddress:{type:String},
     mention:{type:mongoose.Schema.Types.ObjectId, ref:"User"},
 });
+
+Article.plugin(AutoIncrement, {inc_field:'id'})//id는 1,2,3,4..
 
 module.exports = Article;
