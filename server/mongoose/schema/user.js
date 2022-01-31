@@ -1,5 +1,10 @@
-// const mongoose = require('mongoose')
-// const Article = new mongoose.Schema({
+const mongoose = require('mongoose')
+const User = new mongoose.Schema({
+    email:{
+        type:String, required:true, unique:true
+    },
+    password:{},
+    createdAt: {type:Date, default:Date.now}
 //     nickname:{
 //         type:String,
 //         default:"",
@@ -15,6 +20,6 @@
 //         default:Date.now,
 //         required:true
 //     }
-// });
+});
 
-// module.exports = Article;
+module.exports = User;
