@@ -1,6 +1,7 @@
 const express = require("express")
-const { Article } = require('./api');
-const { articleDelete } = require("./api/article");
+const { article, user, board, comment, reply } = require('./router');
+const { articleDelete } = require("./router/article");
+const router = require('./router')
 const app = express();
 const cors = require('cors')
 
@@ -11,10 +12,13 @@ app.use(cors())
 app.get('/',(req,res) =>{
     res.send("success")
 })
-app.post('/create', Article.articleCreate)
-app.get('/read', Article.articleRead)
-app.patch('/update',Article.articleUpdate)
-app.delete('/delete/:id',Article.articleDelete)
+
+// 기능별 라우터추가
+app.use(article)
+app.use(user)
+app.use(board)
+app.use(comment)
+app.use(reply)
 
 const PORT = 3000
 
