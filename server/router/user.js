@@ -2,11 +2,12 @@ const express = require('express')
 const router = express.Router()
 const {User} = require('../mongoose/model')
 
-router.post('/user/login', async (req, res) =>{
 //개별 개시글을 가져오는 라우트
+router.post('/user/login', async (req, res) =>{
     const {email, password} = req.body
-    const loginUser = await User.find({email:email})
-    if(!loginUser._id){
+    const loginUser = await User.findOne({email:email})
+    // console.log(loginUser)
+    if(!loginUser){
         return res.send({
             error:true,
             msg:'there is no email address'
@@ -19,7 +20,7 @@ router.post('/user/login', async (req, res) =>{
             msg:'password fail'
         })
     }
-    res.send({email:loginUser.email, nickname:loginUser.nickname})
+    res.send({email:loginUser.email, nickname:loginUser.nickname, error:false, msg:'login success'})
 })
 
 // add user
